@@ -242,14 +242,6 @@
         this.icActive = true;
       },
       /**
-       * 获取输入的密码和是否输入正确的状态
-       * @param obj
-       */
-      changePassword(obj) {
-        this.password = obj.text;
-        this.passwordState = obj.flag;
-      },
-      /**
        * 重新获取验证码
        */
       reGetCodeImg() {
