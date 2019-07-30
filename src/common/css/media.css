@@ -1,0 +1,113 @@
+@media only screen and (max-device-width: 1024px) and (min-device-width: 768px) and (orientation: portrait){
+  .asside{
+    width: 10.42%;
+  }
+  #app{
+    max-width:1255px;
+    width:100%;
+    min-width:100%;
+  }
+}
+/**
+ *  iPad landscape
+ */
+@media only screen and (min-device-width: 768px)and (max-device-width: 1024px)and (orientation: landscape){
+  #app{
+    max-width:1255px;
+    width:100%;
+    min-width:100%;
+  }
+  .asside{
+    width: 10.42%;
+  }
+}
+
+/**
+ *  iPad pro
+ */
+@media only screen and (min-device-width: 1366px)and (max-device-width: 1024px)and (orientation: portrait){
+  #app{
+    max-width:1366px;
+    width:100%;
+    min-width:100%;
+  }
+  .asside{
+    width: 200px;
+  }
+}
+
+@media only screen and (min-device-width: 1024px)and (max-device-width: 1366px)and (orientation: landscape){
+  #app{
+    max-width:1366px;
+    width:100%;
+    /*min-width:100%;*/
+  }
+  .asside{
+    width: 200px;
+  }
+}
+
+@media only screen and (min-width: 1153px)and (max-width: 1280px){
+  #app{
+    width:100%;
+    min-width:100%;
+  }
+  .asside{
+    width: 200px;
+  }
+}
+@media only screen and (min-width: 1300px)and (max-width: 1366px){
+  #app{
+    width:100%;
+    min-width:100%;
+  }
+  .asside{
+    width: 200px;
+  }
+}
+
+@media only screen and (min-width: 1024px)and (max-width: 1152px){
+  #app{
+    width:100%;
+    min-width:100%;
+  }
+  .asside{
+    width: 200px;
+  }
+}
+
+/* others */
+@media only screen and (min-device-height : 960px) and (max-device-height : 1023px)and (-webkit-min-device-pixel-ratio: 1.3){
+  #app{
+    height: 100%;
+  }
+  .asside{
+    width: 200px;
+  }
+}
+@media only screen and (min-device-height : 1024px) and (max-device-height : 1366px){
+  #app{
+    height: 100%;
+  }
+  .asside{
+    width: 200px;
+  }
+}
+@media only screen and (min-device-width: 1366px){
+  #app{
+    width:100%;
+    min-width:100%;
+  }
+  .asside{
+    width: 200px;
+  }
+}
+@media only screen and (max-device-width: 768px){
+  #app{
+    width:100%;
+    min-width:100%;
+  }
+  .asside{
+    width: 200px;
+  }
+}

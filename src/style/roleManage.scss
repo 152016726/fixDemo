@@ -1,0 +1,101 @@
+.roleManage{
+  padding: 30px 20px 10px 20px;
+  .paddingBox {
+    padding: 30px 0;
+  }
+  .roleManageContent {
+    width: 100%;
+    min-height: 820px;
+    //max-height: 972px;
+    padding: 0 18px;;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    position: relative;
+
+    .major{
+      width: 80px;
+      height: 30px;
+      padding: 0 0;
+      margin: 0 0;
+      span{
+        line-height: 30px;
+      }
+    }
+
+    &::before {
+      position: absolute;
+      display: block;
+      content: "";
+      width: 10px;
+      height: 4px;
+      top: 28px;
+      left: 0;
+      background-color: #4486FF;
+    }
+
+    .personTitle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .title{
+        line-height: 60px;
+        color: #3F4457;
+        font-size: 16px;
+      }
+    }
+
+    .personContent{
+      padding: 0 22px;
+      width: 100%;
+      box-sizing: border-box;
+      .noneData{
+        text-align: center;
+        color: #ADB0B5;
+        line-height: 50px;
+        font-size: 16px;
+      }
+      .pagination{
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+      }
+      .personTable {
+        display: table;
+        width: 100%;
+        border:1px solid #DDDDDD;
+        border-collapse: collapse;
+
+        .tableCell {
+          height: 50px;
+          text-align: center;
+          font-size: 16px;
+          vertical-align: middle;
+          box-sizing: border-box;
+          display: table-cell;
+        }
+
+        .tableHeader {
+          display: table-header-group;
+          border-bottom: 1px solid #DDDDDD;
+          background-color: #F3F3F3;
+          color: #666666;
+          .tableCell{
+            height: 38px;
+          }
+          .index {
+            width: 5%;
+          }
+          .name, .nickname, .createTime, .state, .handle{
+            width: 19%;
+          }
+        }
+        .tableRow{
+          display: table-row;
+          border-bottom: 1px solid #DDDDDD;
+
+        }
+      }
+    }
+
+  }
+}

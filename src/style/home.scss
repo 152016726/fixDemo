@@ -1,0 +1,295 @@
+.home {
+  padding: 30px 20px 10px 20px;
+  background-color: #F0F2F5;
+  box-sizing: border-box;
+
+  .filterPart {
+    padding-bottom: 30px;
+    color: #3F4457;
+    font-size: 16px;
+
+    .part {
+      margin-right: 48px;
+      line-height: 30px;
+
+      .selection, input {
+        margin-left: 10px;
+        width: 200px;
+        height: 30px;
+        line-height: 30px;
+      }
+
+      input {
+        border: 1px solid #DDDDDD;
+        text-indent: 8px;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  .yesterday {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 0px 20px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    position: relative;
+
+    &::before {
+      position: absolute;
+      display: block;
+      content: "";
+      width: 10px;
+      height: 4px;
+      top: 28px;
+      left: 0;
+      background-color: #4486FF;
+    }
+
+    .survey {
+      .surTitle {
+        line-height: 60px;
+        color: #3F4457;
+        font-size: 16px;
+      }
+
+      .surTypes {
+        .item {
+          height: 120px;
+          width: 295px;
+          padding: 0 30px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          box-sizing: border-box;
+          border: 1Px solid #DDDDDD;
+          margin-right: 30px;
+
+          .description {
+            color: #3F4457;
+
+            p {
+              font-size: 30px;
+              line-height: 40px;
+            }
+
+            span {
+              font-size: 16px;
+            }
+          }
+
+          .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: url("../assets/ic_signing.png") no-repeat center center;
+            background-size: cover;
+          }
+        }
+      }
+    }
+
+    .pie {
+      margin-left: 46px;
+      padding-top: 26px;
+      text-align: center;
+
+      .pieCharts {
+        width: 113px;
+        height: 113px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .textColumn {
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+
+        .textType {
+          display: flex;
+          margin: 0 10px;
+          align-content: center;
+          line-height: 20px;
+
+          .tag {
+            width: 20px;
+            height: 20px;
+            background: url("../assets/ic_kitwei.png") no-repeat center center;
+            background-size: cover;
+            margin-right: 6px;
+          }
+        }
+      }
+    }
+  }
+
+  .trendcy {
+    width: 100%;
+    padding: 0 18px;;
+    padding-bottom: 60px;
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    position: relative;
+
+    &::before {
+      position: absolute;
+      display: block;
+      content: "";
+      width: 10px;
+      height: 4px;
+      top: 28px;
+      left: 0;
+      background-color: #4486FF;
+    }
+
+    .trendTitle {
+      line-height: 60px;
+      color: #3F4457;
+      font-size: 16px;
+    }
+
+    .line {
+      padding: 0 82px;
+
+      .description {
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+
+        .types {
+          display: flex;
+          justify-content: center;
+          align-content: center;
+          font-size: 16px;
+
+          .dayType {
+            margin-right: 10px;
+
+            span {
+              cursor: pointer;
+              padding: 5px 13px;
+
+              &.active {
+                color: #4486FF;
+                border-bottom: 2px solid #4486FF;
+              }
+            }
+          }
+
+          .signType {
+            span {
+              cursor: pointer;
+              padding: 7px 19px;
+
+              &.active {
+                color: #4486FF;
+                border: 1px solid #4486FF;
+              }
+            }
+          }
+        }
+      }
+
+      .trendCharts {
+        height: 660px;
+        width: 100%;
+      }
+    }
+  }
+
+  .person {
+    width: 100%;
+    padding: 0 18px;
+    padding-bottom: 40px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    position: relative;
+
+    &::before {
+      position: absolute;
+      display: block;
+      content: "";
+      width: 10px;
+      height: 4px;
+      top: 28px;
+      left: 0;
+      background-color: #4486FF;
+    }
+
+    .personTitle {
+      line-height: 60px;
+      color: #3F4457;
+      font-size: 16px;
+    }
+
+    .personContent{
+      padding: 0 82px;
+      width: 100%;
+      box-sizing: border-box;
+      .noneData{
+        text-align: center;
+        color: #ADB0B5;
+        line-height: 50px;
+        font-size: 16px;
+      }
+      .personTable {
+        display: table;
+        width: 100%;
+        border:1px solid #DDDDDD;
+        border-collapse: collapse;
+
+        .tableCell {
+          height: 38px;
+          text-align: center;
+          font-size: 16px;
+          vertical-align: middle;
+          box-sizing: border-box;
+          display: table-cell;
+        }
+
+        .tableHeader {
+          display: table-header-group;
+          border-bottom: 1px solid #DDDDDD;
+          background-color: #F3F3F3;
+          color: #666666;
+          .index {
+            width: 4%;
+          }
+
+          .category, .num, .rate {
+            width: 32%;
+          }
+        }
+        .tableRow{
+          display: table-row;
+          border-bottom: 1px solid #DDDDDD;
+
+        }
+      }
+    }
+
+  }
+
+  .el-input__inner {
+    height: 30px;
+    line-height: 30px;
+  }
+
+  .el-input__icon {
+    line-height: 30px;
+    padding: 0 0 ;
+    margin: 0 0 ;
+  }
+
+  .el-button {
+    width: 86px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 0;
+    margin: 0 0;
+  }
+}

@@ -1,0 +1,102 @@
+.servicePakage{
+  padding: 30px 20px 10px 20px;
+  background-color: #F0F2F5;
+  height: 100%;
+  box-sizing: border-box;
+  .serviceTitle{
+    display: flex;
+    .major{
+      width: 80px;
+      height: 30px;
+      padding: 0 0;
+      margin: 0 0;
+      margin-left: 60px;
+      span{
+        line-height: 30px;
+      }
+    }
+  }
+  .serviceList{
+    width: 100%;
+    padding: 0 18px;;
+    padding-bottom: 30px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    position: relative;
+    .noneData{
+      text-align: center;
+      color: #ADB0B5;
+      line-height: 50px;
+      font-size: 16px;
+    }
+    &::before {
+      position: absolute;
+      display: block;
+      content: "";
+      width: 10px;
+      height: 4px;
+      top: 28px;
+      left: 0;
+      background-color: #4486FF;
+    }
+    .serviceTitle {
+      line-height: 70px;
+      color: #3F4457;
+      font-size: 16px;
+    }
+    .serviceTable{
+      margin: 0 auto;
+      display: table;
+      width: 100%;
+      border:1px solid #DDDDDD;
+      border-collapse: collapse;
+
+      .major {
+        width: 80px;
+        height: 30px;
+        padding: 0 0;
+        margin: 0 0;
+
+        span {
+          line-height: 30px;
+        }
+      }
+
+      .tableCell {
+        height: 50px;
+        text-align: center;
+        font-size: 16px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        display: table-cell;
+        >div{
+          text-overflow: ellipsis;
+          overflow: hidden;
+          //word-break: break-all;
+          white-space: nowrap;
+        }
+      }
+      .tableHeader {
+        display: table-header-group;
+        border-bottom: 1px solid #DDDDDD;
+        background-color: #F3F3F3;
+        color: #666666;
+        box-sizing: border-box;
+        .tableCell{
+          height: 38px;
+        }
+      }
+      .tableRow{
+        display: table-row;
+        border-bottom: 1px solid #DDDDDD;
+        box-sizing: border-box;
+      }
+      .index{
+        width: 5%;
+      }
+      .organization, .commonPackage, .levelPackage, .diyPackage, .handle{
+        width: 19%;
+      }
+    }
+  }
+}
