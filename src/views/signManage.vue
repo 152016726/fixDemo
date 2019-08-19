@@ -570,6 +570,9 @@
           value: ''
         })
       })
+    },
+    mounted() {
+      console.log(this.$route, 'this.$route');
     }
   }
 </script>

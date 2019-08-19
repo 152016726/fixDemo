@@ -141,6 +141,9 @@
         this.$refs.loginForm.validate(valid => {
           if (valid) {
             // 请求登陆接口
+            this.$store.dispatch('user/login', Object.assign(loginForm, {
+              verifyToken:imgVerifyToken,
+            }));
             this.$post('login/user', Object.assign(loginForm, {
               verifyToken:imgVerifyToken,
             })).then(rsp => {

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {Message, MessageBox, Loading} from 'element-ui';
+import {getAuth, removeAuth} from '@/utils/auth';
 
 axios.defaults.baseURL = '/api';
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
@@ -7,8 +8,13 @@ axios.defaults.timeout = 20000;
 // 允许携带cookie
 axios.defaults.withCredentials = true;
 
+const service = axios.create({
+  baseURL: '/api',
+  timeout: 20000
+})
+
 //http request 拦截器
-axios.interceptors.request.use(
+service.interceptors.request.use(
   config => {
     config.loadingInstance = Loading.service({
       fullscreen: false,
@@ -16,7 +22,7 @@ axios.interceptors.request.use(
       text: '正在拼命加载中',
       spinner: 'el-icon-loading'
     });
-    let token = sessionStorage.getItem('auth-token');
+    let token = getAuth();
     let headerObj;
     if (config.method === "post") {
       headerObj = {
@@ -46,7 +52,7 @@ axios.interceptors.request.use(
 );
 
 // 添加一个响应拦截器
-axios.interceptors.response.use(function (response) {
+service.interceptors.response.use(function (response) {
   // Do something with response data
   response.config.loadingInstance.close();
   if (response.data.errcode !== 0) {
@@ -57,7 +63,7 @@ axios.interceptors.response.use(function (response) {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        sessionStorage.removeItem('auth-token');
+        removeAuth()
         location.reload() // 为了重新实例化vue-router对象 避免bug
       })
     }
@@ -109,6 +115,7 @@ export function post(url, data) {
       })
   })
 }
+export default service
 
 
 

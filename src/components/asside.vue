@@ -54,7 +54,7 @@
       }
     },
     computed: {
-      ...mapState([
+      ...mapState('page',[
         'orderPage'
       ])
     },
