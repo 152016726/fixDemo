@@ -1,22 +1,29 @@
 import {login, logout} from '@/api/user';
-import {resetRouter} from '@/router';
 import {getAuth, removeAuth, setAuth} from '@/utils/auth';
+import {getInfo, removeInfo, setInfo} from '@/utils/userInfo';
+import {getRole, removeRole, setRole} from '@/utils/role';
+import {getAuthority, setAuthority, removeAuthority} from '@/utils/authority';
+import authority from '@/common/js/authOptions';
 
 const state = {
   token: getAuth(),
-  name: '',
-  avatar: ''
+  info: JSON.parse(getInfo()),
+  role: JSON.parse(getRole()),
+  authority: JSON.parse(getAuthority())
 };
 
 const mutations = {
   set_token: (state, token) => {
     state.token = token;
   },
-  set_name: (state, name) => {
-    state.name = name;
+  set_info: (state, info) => {
+    state.info = info;
   },
-  set_avatar: (state, avatar) => {
-    state.avatar = avatar;
+  set_role: (state, role) => {
+    state.role = role;
+  },
+  set_authority: (state, authority) => {
+    state.authority = authority
   }
 };
 
@@ -27,20 +34,39 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({account: account.trim(), password}).then(response => {
         const {data} = response;
+        // 角色权限
+        let subList = data.permissionGroups.map(item => {
+          let arr = item.permissions.map(item => {
+            return item.permission;
+          });
+          return arr
+        });
+        let authList = [];
+        subList.forEach(item => {
+          authList = authList.concat(item);
+        });
+        for (let key in authority) {
+          authority[key] = authList.indexOf(key) !== -1;
+        }
+        commit('set_authority', authority)
+        setAuthority(authority)
         commit('set_token', data.token)
         setAuth(data.token)
-        resolve()
+        setInfo(JSON.stringify(data))
+        commit('set_info', data)
+        setRole(JSON.stringify(data.role))
+        commit('set_role', data.role)
+        resolve(response)
       }).catch(error => {
         reject(error)
       })
     })
-  },
-  // get user info
-  getInfo({commit, state}) {
-    return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-
-      })
-    })
   }
+}
+
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions
 }

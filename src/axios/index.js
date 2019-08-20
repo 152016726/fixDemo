@@ -90,12 +90,11 @@ service.interceptors.response.use(function (response) {
 });
 
 // get请求
-export function get(url, params = {}) {
+function get(url, params = {}) {
   return new Promise((resolve, reject) => {
     axios.get(url, {
       params: params
-    })
-      .then(response => {
+    }).then(response => {
         resolve(response.data);
       })
       .catch(err => {
@@ -105,7 +104,7 @@ export function get(url, params = {}) {
 }
 
 // post请求
-export function post(url, data) {
+function post(url, data) {
   return new Promise((resolve, reject) => {
     axios.post(url, data)
       .then(response => {
@@ -115,7 +114,11 @@ export function post(url, data) {
       })
   })
 }
-export default service
+export {
+  service,
+  get,
+  post
+}
 
 
 

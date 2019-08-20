@@ -1,61 +1,66 @@
 <template>
-    <el-breadcrum class="app-breadcrumb" separator="/">
-      <transition-group name="breadcrumb">
-          <el-breadcrumb-item v-for="(item, index) in levelList" :key="item.path">
-            <span v-if="item.redirect === 'noRedirect' index === levelList.length-1" class="no-redirect">{{item.meta.title}}</span>
-            <a v-else @click.prevent="handleLink(item)">{{item.meta.title}}</a>
-          </el-breadcrumb-item>
-      </transition-group>
-    </el-breadcrum>
+  <el-breadcrum class="app-breadcrumb" separator="/">
+    <transition-group name="breadcrumb">
+      <el-breadcrumb-item v-for="(item, index) in levelList" :key="item.path">
+        <span v-if="item.redirect === 'noRedirect' index === levelList.length-1"
+              class="no-redirect">{{item.meta.title}}</span>
+        <a v-else @click.prevent="handleLink(item)">{{item.meta.title}}</a>
+      </el-breadcrumb-item>
+    </transition-group>
+  </el-breadcrum>
 </template>
 
 <script>
     import pathToRegexp from 'path-to-regexp';
+
     export default {
         name: "Breadcrumb",
-      data(){
-          return {
-            levelList: null
-          }
-      },
-      watch:{
-          $route(){
+        data() {
+            return {
+                levelList: null
+            }
+        },
+        watch: {
+            $route() {
+                this.getBreadcrumb()
+            }
+        },
+        created() {
             this.getBreadcrumb()
-          }
-      },
-      created(){
-          this.getBreadcrumb()
-      },
-      methods:{
-        getBreadcrumb(){
-          let matched = this.$route.matched.filter(item=>item.meta&&item.meta.title);
-          const first = matched[0];
-          if(!this.isDashboard(first)){
-            matched = [{path: '/dashboard', meta:{title: 'Dashboard'}}].concat(matched)
-          }
-          this.levelList = matched.filter(item=> item.meta && item.meta.title && item.meta.breadcrumb !== false)
         },
-        isDashboard(route){
-          const name = route && route.name;
-          if(!name){
-            return false
-          }
-          return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
-        },
-        pathCompile(path){
-          const {params} = this.$route;
-          let toPath = pathToRegexp.compile(path);
-          return toPath(params)
-        },
-        handleLink(item){
-          const { redirect, path } = item;
-          if(redirect){
-            this.$router.push(redirect)
-            return
-          }
-          this.$router.push(this.pathCompile(path))
+        methods: {
+            getBreadcrumb() {
+                // 筛选出导航页的父子路由
+                let matched = this.$route.matched.filter(item => item.meta && item.meta.title);
+                const first = matched[0];
+                // 如果父路由不是dashboard则加上去
+                if (!this.isDashboard(first)) {
+                    matched = [{path: '/dashboard', meta: {title: 'Dashboard'}}].concat(matched)
+                }
+                // 最后统一形成以dashboard为最高级的层层路由结构
+                this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
+            },
+            isDashboard(route) {
+                const name = route && route.name;
+                if (!name) {
+                    return false
+                }
+                return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
+            },
+            pathCompile(path) {
+                const {params} = this.$route;
+                let toPath = pathToRegexp.compile(path);
+                return toPath(params)
+            },
+            handleLink(item) {
+                const {redirect, path} = item;
+                if (redirect) {
+                    this.$router.push(redirect)
+                    return
+                }
+                this.$router.push(this.pathCompile(path))
+            }
         }
-      }
     }
 </script>
 

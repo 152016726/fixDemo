@@ -78,7 +78,6 @@
   import unlock from '@/assets/ic_lock_on.png';
   import codeOff from '@/assets/ic_testing_off.png';
   import codeOn from '@/assets/ic_testing_on.png';
-  import authority from '@/common/js/authOptions';
   import {validUsername, validPassword} from '@/common/js/util';
 
   export default {
@@ -143,50 +142,27 @@
             // 请求登陆接口
             this.$store.dispatch('user/login', Object.assign(loginForm, {
               verifyToken:imgVerifyToken,
-            }));
-            this.$post('login/user', Object.assign(loginForm, {
-              verifyToken:imgVerifyToken,
-            })).then(rsp => {
-              // 保存本地账号密码/不保存本地账号和密码
-              if (this.checked) {
-                this.$localStore.setItem('accountInfo', JSON.stringify({account, password}));
-              } else {
-                this.$localStore.removeItem('accountInfo');
-              }
-              // 用户基本信息
-              this.$localStore.setItem('info', JSON.stringify(rsp.data));
-              // 角色信息
-              this.$localStore.setItem('role', JSON.stringify(rsp.data.role));
-              // 保存token
-              this.$localStore.setItem('auth-token', rsp.data.token);
-              // 路由跳转
-              this.$router.push({path: '/'});
-              // 角色权限
-              let subList = rsp.data.permissionGroups.map(item => {
-                let arr = item.permissions.map(item => {
-                  return item.permission;
-                });
-                return arr
-              });
-              let authList = [];
-              subList.forEach(item => {
-                authList = authList.concat(item);
-              });
-              for (let key in authority) {
-                authority[key] = authList.indexOf(key) !== -1;
-              }
-              this.$localStore.setItem('authority', JSON.stringify(authority));
-            }, rej => {
-              if (rej.data.errcode === 460) {
-                this.$message.error(rej.data.datas[0].message);
-              } else {
-                this.$message.error(rej.data.errmsg);
-              }
+            })).then(rsp=>{
+                const {account, password} = this;
+                // 保存本地账号密码/不保存本地账号和密码
+                if (this.checked) {
+                    this.$localStore.setItem('accountInfo', JSON.stringify({account, password}));
+                } else {
+                    this.$localStore.removeItem('accountInfo');
+                }
+                // 路由跳转
+                this.$router.push({path: '/'});
+            }, rej=>{
+                if (rej.data.errcode === 460) {
+                    this.$message.error(rej.data.datas[0].message);
+                } else {
+                    this.$message.error(rej.data.errmsg);
+                }
 
-              if (rej.data) {
-                if (rej.data.errcode === 600403 || rej.data.errcode === 600402) this.reGetCodeImg();
-              }
-            })
+                if (rej.data) {
+                    if (rej.data.errcode === 600403 || rej.data.errcode === 600402) this.reGetCodeImg();
+                }
+            });
           } else {
             return false
           }

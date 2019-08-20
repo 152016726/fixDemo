@@ -2,6 +2,9 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import app from './modules/app';
 import page from './modules/page';
+import user from './modules/user';
+import setting from "./modules/setting";
+import getters from "./getters";
 
 Vue.use(Vuex);
 
@@ -9,8 +12,11 @@ Vue.use(Vuex);
 let defStore = new Vuex.Store({
   modules:{
     app,
-    page
-  }
+    page,
+    user,
+    setting
+  },
+  getters
 });
 
 export default defStore;
