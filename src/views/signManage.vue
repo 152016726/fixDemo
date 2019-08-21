@@ -573,6 +573,7 @@
     },
     mounted() {
       console.log(this.$route, 'this.$route');
+      console.log(this.$router, 'this.$router');
     }
   }
 </script>

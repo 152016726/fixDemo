@@ -1,5 +1,5 @@
 /**
- * 格式化日期形式2018-01-01
+ * 格式化日期形式2018-01-01 01:11:10
  */
 const formatTime = date => {
   const year = date.getFullYear()
@@ -13,7 +13,7 @@ const formatTime = date => {
 }
 
 /**
- *
+ * 对数字，身份证，数字加密处理
  */
 const secretData = (data, dataType) => {
 
@@ -190,6 +190,54 @@ const identityCodeValid = identityCard => {
 
 const validUsername =str => /^[0-9a-zA-Z]{6,20}/.test(str);
 const validPassword =str => /^[\w_-]{6,20}$/.test(str);
+
+// 限定管理员账号
+const isvalidUsername = (str) => {
+  const validMap = ['admin', 'editor']
+  return validMap.indexOf(str.trim()) >= 0
+}
+
+// 验证路由
+const isExternal = (path) => {
+  return /^(https?:|mailto:|tel:)/.test(path)
+}
+
+// 校验身份证号码
+const checkIdCard = (rule, value, callback) => {
+  if (!value) {
+    callback(new Error('请输入身份证号码'))
+  } else {
+    if ((!(/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(value)))) {
+      callback(new Error('身份证号码格式不正确'))
+    } else {
+      callback()
+    }
+  }
+}
+
+// 校验金额
+const checkMoney = (rule, value, callback) => {
+  var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/
+  if (value) {
+    if (!reg.test(value)) {
+      return callback(new Error('请输入正整数或者两位小数的价格'))
+    } else {
+      callback()
+    }
+  }
+}
+
+// 校验数量只能包含数字、字母、下划线或者中划线
+const isvalidNumber = (rule, value, callback) => {
+  let reg = /^(?!^-+$)(?!^_+$)(?!^\d+$)[\d|a-zA-Z|\-|_]{6,16}$/
+  if (value) {
+    if (!reg.test(value)) {
+      return callback(new Error('请输入数字、字母、下划线或者中划线的编号'))
+    } else {
+      callback()
+    }
+  }
+}
 
 module.exports = {
   json2Form,
