@@ -18,7 +18,7 @@
     "file-saver": "^2.0.2",
     "jquery": "^1.11.3",
     "path-to-regexp": "^3.0.0",
-    "qs": "^6.7.0",
+    "qs": "^6.7.3",
     "store": "^2.0.12",
     "style-loader": "^0.23.1",
     "timer": "0.0.2",
